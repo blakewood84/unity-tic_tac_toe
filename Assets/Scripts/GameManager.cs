@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -142,7 +142,6 @@ public class GameManager : MonoBehaviour
 
     private void ShowWinner(string winner)
     {
-
         WinnerPanel.SetActive(true);
         WinnerPanel.GetComponent<WinnerPanel>().AssignWinner(winner);
 
