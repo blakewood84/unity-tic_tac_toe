@@ -3,11 +3,11 @@ using UnityEngine.UI;
 
 public class WinnerPanel : MonoBehaviour
 {
-    public Text winningPlayer;
+    public Text WinningPlayer;
 
     public void AssignWinner(string winner)
     {
-        winningPlayer.text = winner;
+        WinningPlayer.text = winner;
     }
 
 }

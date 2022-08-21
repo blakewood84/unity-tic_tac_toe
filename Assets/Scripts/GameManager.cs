@@ -54,17 +54,20 @@ public class GameManager : MonoBehaviour
         // Await till Side Choose Panel is removed
         ChoosePlayerPanel.SetActive(true);
 
+    }
+
+    public void RemoveChoosePlayerPanel()
+    {
+        ChoosePlayerPanel.SetActive(false);
+
+        // Enable buttons for game after player has been chosen
         for (int i = 0; i < gridSpaces.Length; i++)
         {
             gridSpaces[i].button.interactable = true;
         }
     }
 
-    public void RemoveChoosePlayerPanel()
-    {
-        ChoosePlayerPanel.SetActive(false);
-    }
-
+    // This checks which plays can be made by the computer, or if there are no plays left (Draw)
     private List<int> GetUnplayedGridSpaces()
     {
         List<int> unplayedGridSpaces = new List<int>();
@@ -78,36 +81,6 @@ public class GameManager : MonoBehaviour
             }
         }
         return unplayedGridSpaces;
-    }
-
-    private void RunComputerTurn()
-    {
-        Debug.Log("Computer's Turn!");
-
-        List<int> unplayedGridSpaces = GetUnplayedGridSpaces();
-
-        if (unplayedGridSpaces.Count == 0)
-        {
-            // Game is Draw, End Game;
-            ShowDrawPanel();
-            return;
-        }
-
-        // Choose random number from available GridSpaces
-        // Assign and disable button
-        int randomIndex = Random.Range(0, unplayedGridSpaces.Count);
-        int randomGridSpace = unplayedGridSpaces[randomIndex];
-
-        gridSpaces[randomGridSpace].buttonText.text = computerSide;
-        gridSpaces[randomGridSpace].button.interactable = false;
-
-        bool winner = CheckForGameWinner(computerSide);
-
-        if (winner)
-        {
-            // Throw Game Over Panel
-            ShowWinnerPanel(computerSide);
-        }
     }
 
     private bool CheckForGameWinner(string side)
@@ -144,29 +117,7 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    private void ShowWinnerPanel(string winner)
-    {
-        Debug.Log("Winner! " + winner);
-        WinnerPanel.SetActive(true);
-        WinnerPanel.GetComponent<WinnerPanel>().AssignWinner(winner);
-
-        GameOptionsPanel.SetActive(true);
-
-        // Shutdown Game
-        for (int i = 0; i < gridSpaces.Length; i++)
-        {
-            gridSpaces[i].button.interactable = false;
-        }
-    }
-
-    private void ShowDrawPanel()
-    {
-        Debug.Log("Game is a Draw!");
-        DrawPanel.SetActive(true);
-        GameOptionsPanel.SetActive(true);
-
-    }
-
+    // End's Human Player's turn logic
     public void EndPlayerTurn()
     {
         bool winner = CheckForGameWinner(playerSide);
@@ -188,4 +139,61 @@ public class GameManager : MonoBehaviour
 
         RunComputerTurn();
     }
+
+    // Computer AI Logic
+    private void RunComputerTurn()
+    {
+        Debug.Log("Computer's Turn!");
+
+        List<int> unplayedGridSpaces = GetUnplayedGridSpaces();
+
+        if (unplayedGridSpaces.Count == 0)
+        {
+            // Game is Draw, End Game;
+            ShowDrawPanel();
+            return;
+        }
+
+        // Choose random number from available GridSpaces
+        // Assign and disable button
+        int randomIndex = Random.Range(0, unplayedGridSpaces.Count);
+        int randomGridSpace = unplayedGridSpaces[randomIndex];
+
+        gridSpaces[randomGridSpace].buttonText.text = computerSide;
+        gridSpaces[randomGridSpace].button.interactable = false;
+
+        bool winner = CheckForGameWinner(computerSide);
+
+        if (winner)
+        {
+            // Throw Game Over Panel
+            ShowWinnerPanel(computerSide);
+        }
+    }
+
+    // Shows a Panel that shows which player has won (X or O)
+    private void ShowWinnerPanel(string winner)
+    {
+        Debug.Log("Winner! " + winner);
+        WinnerPanel.SetActive(true);
+        WinnerPanel.GetComponent<WinnerPanel>().AssignWinner(winner);
+
+        GameOptionsPanel.SetActive(true);
+
+        // Shutdown Game
+        for (int i = 0; i < gridSpaces.Length; i++)
+        {
+            gridSpaces[i].button.interactable = false;
+        }
+    }
+
+    // Shows a Panel declaring game is tied or (Draw)
+    private void ShowDrawPanel()
+    {
+        Debug.Log("Game is a Draw!");
+        DrawPanel.SetActive(true);
+        GameOptionsPanel.SetActive(true);
+
+    }
+
 }
