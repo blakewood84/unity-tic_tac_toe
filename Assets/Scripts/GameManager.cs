@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        Debug.Log("Game Started!");
+
         // Remove Start Button
         StartButton = GameObject.Find("StartButton");
         StartButton.SetActive(false);
@@ -144,6 +146,7 @@ public class GameManager : MonoBehaviour
 
     private void ShowWinnerPanel(string winner)
     {
+        Debug.Log("Winner! " + winner);
         WinnerPanel.SetActive(true);
         WinnerPanel.GetComponent<WinnerPanel>().AssignWinner(winner);
 
@@ -158,6 +161,7 @@ public class GameManager : MonoBehaviour
 
     private void ShowDrawPanel()
     {
+        Debug.Log("Game is a Draw!");
         DrawPanel.SetActive(true);
         GameOptionsPanel.SetActive(true);
 
@@ -178,7 +182,6 @@ public class GameManager : MonoBehaviour
         // Check for Draw
         if (unplayedGridSpaces.Count == 0)
         {
-            Debug.Log("Game is a Draw!");
             ShowDrawPanel();
             return;
         }

@@ -24,7 +24,6 @@ public class GridSpace : MonoBehaviour
     // Initializes Game Manager when Game Starts
     public void Init()
     {
-        Debug.Log("Init!");
         button.interactable = false;
         GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }

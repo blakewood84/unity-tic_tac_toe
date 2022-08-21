@@ -14,9 +14,8 @@ public class ButtonChooseSide : MonoBehaviour
 
     public void ChoosePlayerSide()
     {
+        Debug.Log("You've Chosen: " + playerSide.text);
         GameManager.SetPlayerSide(playerSide.text);
-        Debug.Log("SIDE CHOSEN: " + playerSide.text);
-
         GameManager.RemoveChoosePlayerPanel();
 
     }
