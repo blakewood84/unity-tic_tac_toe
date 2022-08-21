@@ -100,11 +100,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.40784314, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9811321, g: 0.032395888, b: 0.032395888, a: 1}
-    m_PressedColor: {r: 1, g: 0, b: 0.8089566, a: 1}
-    m_SelectedColor: {r: 0, g: 0.5188679, b: 0.09763189, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 1, g: 0.68378437, b: 0.4078431, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.7729136, b: 0.2216981, a: 1}
+    m_PressedColor: {r: 1, g: 0.67480886, b: 0.1273585, a: 1}
+    m_SelectedColor: {r: 1, g: 0.5615011, b: 0, a: 1}
+    m_DisabledColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -149,7 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 2466120531845486062}
   buttonText: {fileID: 2466120532259314931}
-  playerSide: X
 --- !u!1 &2466120532259314933
 GameObject:
   m_ObjectHideFlags: 0
