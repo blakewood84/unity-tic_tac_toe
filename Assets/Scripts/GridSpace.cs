@@ -15,9 +15,13 @@ public class GridSpace : MonoBehaviour
     // Sets the Button to disabled, and the Text to the player (X or O)
     public void SetSpace()
     {
-        buttonText.text = GameManager.GetPlayerSide();
+        string playerSide = GameManager.GetPlayerSide();
+        Color playerColor = GameManager.GetPlayerColor(playerSide);
+
+        buttonText.text = playerSide;
+        buttonText.color = playerColor;
         button.interactable = false;
-        // Checks to see if player has won
+
         GameManager.EndPlayerTurn();
     }
 

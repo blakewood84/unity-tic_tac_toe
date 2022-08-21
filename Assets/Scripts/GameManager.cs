@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     const string PlayerX = "X";
     const string PlayerO = "0";
+
+    private Color XColor = new Color(0, 0, 255, 255);
+    private Color OColor = Color.red;
 
     int[,] winningConditions = new int[8, 3]
     {
@@ -35,6 +39,11 @@ public class GameManager : MonoBehaviour
     public string GetPlayerSide()
     {
         return playerSide;
+    }
+
+    public Color GetPlayerColor(string side)
+    {
+        return (side.Equals(PlayerX)) ? XColor : OColor;
     }
 
     public void SetPlayerSide(string side)
@@ -109,6 +118,13 @@ public class GameManager : MonoBehaviour
 
             if (winner)
             {
+                // Highlight winning tiles
+                foreach (GridSpace space in spaces)
+                {
+                    space.buttonText.color = Color.magenta;
+
+                }
+
                 return true;
             }
         }
@@ -155,12 +171,16 @@ public class GameManager : MonoBehaviour
         }
 
         // Choose random number from available GridSpaces
-        // Assign and disable button
         int randomIndex = Random.Range(0, unplayedGridSpaces.Count);
         int randomGridSpace = unplayedGridSpaces[randomIndex];
 
-        gridSpaces[randomGridSpace].buttonText.text = computerSide;
-        gridSpaces[randomGridSpace].button.interactable = false;
+        // Assign button attributes and disable button
+        GridSpace space = gridSpaces[randomGridSpace];
+        space.buttonText.text = computerSide;
+        space.button.interactable = false;
+
+        Color computerColor = GetPlayerColor(computerSide);
+        space.buttonText.color = computerColor;
 
         bool winner = CheckForGameWinner(computerSide);
 
