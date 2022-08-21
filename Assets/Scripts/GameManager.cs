@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public GridSpace[] gridSpaces;
     public GameObject ChoosePlayerPanel; // Assigned via Unity
     public GameObject WinnerPanel; // Assigned via Unity
+    public GameObject GameOptionsPanel; // Assigned via Unity, for End / Restart
+    public GameObject DrawPanel; // Assigned via Unity
     private GameObject StartButton;
     private GameObject Canvas;
     private string playerSide;
@@ -128,6 +130,7 @@ public class GameManager : MonoBehaviour
             }
 
             bool winner = spaces.TrueForAll((e) => e.buttonText.text == side);
+
             if (winner)
             {
                 return true;
@@ -143,11 +146,20 @@ public class GameManager : MonoBehaviour
         WinnerPanel.SetActive(true);
         WinnerPanel.GetComponent<WinnerPanel>().AssignWinner(winner);
 
+        GameOptionsPanel.SetActive(true);
+
         // Shutdown Game
         for (int i = 0; i < gridSpaces.Length; i++)
         {
             gridSpaces[i].button.interactable = false;
         }
+    }
+
+    private void ShowDraw()
+    {
+        DrawPanel.SetActive(true);
+        GameOptionsPanel.SetActive(true);
+
     }
 
     public void EndPlayerTurn()
