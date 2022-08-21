@@ -3,9 +3,10 @@ using UnityEngine.UI;
 
 public class ButtonChooseSide : MonoBehaviour
 {
-    GameManager GameManager;
+
     public Text playerSide;
     private GameObject ChoosePlayerPanel;
+    private GameManager GameManager;
 
     private void Start()
     {
