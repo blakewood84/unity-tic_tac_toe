@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
         if (unplayedGridSpaces.Count == 0)
         {
             // Game is Draw, End Game;
+            ShowDrawPanel();
             return;
         }
 
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour
         if (winner)
         {
             // Throw Game Over Panel
-            ShowWinner(computerSide);
+            ShowWinnerPanel(computerSide);
         }
     }
 
@@ -141,7 +142,7 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    private void ShowWinner(string winner)
+    private void ShowWinnerPanel(string winner)
     {
         WinnerPanel.SetActive(true);
         WinnerPanel.GetComponent<WinnerPanel>().AssignWinner(winner);
@@ -155,7 +156,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ShowDraw()
+    private void ShowDrawPanel()
     {
         DrawPanel.SetActive(true);
         GameOptionsPanel.SetActive(true);
@@ -168,7 +169,7 @@ public class GameManager : MonoBehaviour
 
         if (winner)
         {
-            ShowWinner(playerSide);
+            ShowWinnerPanel(playerSide);
             return;
         }
 
@@ -178,6 +179,7 @@ public class GameManager : MonoBehaviour
         if (unplayedGridSpaces.Count == 0)
         {
             Debug.Log("Game is a Draw!");
+            ShowDrawPanel();
             return;
         }
 
